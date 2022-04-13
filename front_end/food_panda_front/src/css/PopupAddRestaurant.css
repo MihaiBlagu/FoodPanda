@@ -1,0 +1,42 @@
+.popup-add-rest {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-add-rest-inner {
+    position: relative;
+    padding: 32px;
+    width: 100%;
+    max-width: 640px;
+    background-color: white;
+    border-radius: 5px; 
+}
+
+.popup-add-rest-inner .close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    display: inline-block;
+    background: #fff;
+    color: grey;
+    padding: 10px 20px;
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: inherit;
+    height: 40px
+}
+
+.close-add-rest-btn:hover {
+    background: grey;
+    color: #fff;
+}

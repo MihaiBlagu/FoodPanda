@@ -1,0 +1,3 @@
+https://stackoverflow.com/questions/67937327/how-to-implement-manytomany-with-unique-constraint
+https://stackoverflow.com/questions/54464425/how-to-annotate-onetomany-association-between-hashmap-key-and-another-class-jav
+https://stackoverflow.com/questions/56371084/jparepository-findall-returns-empty-list

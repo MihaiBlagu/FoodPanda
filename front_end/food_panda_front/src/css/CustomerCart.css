@@ -1,0 +1,33 @@
+.items-in-cart {
+    float: left;
+    width: 100vh;
+    list-style: none;
+}
+
+.item-list {
+    position: relative;
+    height:82vh; 
+    width:80%;
+    overflow:hidden; 
+    overflow-y:scroll;
+    float:left;
+}
+
+.item-info {
+    display: inline-block;
+    list-style-type: none;
+    padding-right: 20px;
+}
+
+.item:hover {
+    cursor: pointer;
+}
+
+.total {
+    float: left;
+}
+
+.check-out {
+    float: left;
+    list-style-type: none;
+}
