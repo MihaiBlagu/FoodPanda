@@ -1,18 +1,15 @@
 package FoodPandaBack.controller;
 
 import FoodPandaBack.model.MenuItem;
-import FoodPandaBack.model.Order;
 import FoodPandaBack.model.OrderMenuItem;
-import FoodPandaBack.service.MenuItemService;
 import FoodPandaBack.service.OrderMenuItemService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @RestController
 public class OrderMenuItemController {
@@ -20,32 +17,23 @@ public class OrderMenuItemController {
     @Autowired
     private OrderMenuItemService orderMenuItemService;
 
-    @Autowired
-    private MenuItemService menuItemService;
+    private final Logger logger = LoggerFactory.getLogger(OrderMenuItemController.class);
 
     @GetMapping("/order-menu-item")
     public List<OrderMenuItem> getOrderMenuItems(){
+        logger.info("OrderMenuItem Controller: Received GET Request - get all relationships");
         return orderMenuItemService.getOrderMenuItems();
     }
 
     @PostMapping("/order-menu-item")
-    public OrderMenuItem saveOrderMenuItem(@RequestBody OrderMenuItem newO){
+    public OrderMenuItem saveOrderMenuItem(@RequestBody OrderMenuItem newO) {
+        logger.info("OrderMenuItem Controller: Received POST Request - insert new relationship");
         return orderMenuItemService.saveOrderMenuItem(newO);
     }
 
     @GetMapping("/order-menu-item/{orderId}")
-    public List<Pair<MenuItem, Integer>> getOrderMenuItemsByOrderId(@PathVariable Long orderId){
-        return orderMenuItemService.getMenuItemsByOrderId(orderId)
-                .stream()
-                .map(oi -> Pair.of(oi.getMenuItem(), oi.getNbOfItems()))
-                .collect(Collectors.toList());
-
-//        List<OrderMenuItem> oi = orderMenuItemService.getMenuItemsByOrderId(orderId);
-//        ArrayList<Pair<MenuItem, Integer>> result = new ArrayList<>();
-//        for (OrderMenuItem o : oi) {
-//            result.add(Pair.of(o.getMenuItem(), o.getNbOfItems()));
-//        }
-//
-//        return result;
+    public List<Pair<MenuItem, Integer>> getMenuItemsByOrderId(@PathVariable Long orderId) {
+        logger.info("OrderMenuItem Controller: Received GET Request - get items for order with id: " + orderId);
+        return orderMenuItemService.getMenuItemsByOrderId(orderId);
     }
 }

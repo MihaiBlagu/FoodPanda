@@ -27,6 +27,7 @@ const AdminPage = ({}) => {
     const [newItemTitle, setNewItemTitle] = useState("")
     const [newCategory, setNewCategory] = useState(0)
     const [newPrice, setNewPrice] = useState(0)
+    const [res, setRes] = useState(0)
         
     React.useEffect(function effectFunction() {
         fetchItems()
@@ -70,7 +71,7 @@ const AdminPage = ({}) => {
             return response.text();
         }).then(function(data) {
             if(data) {
-                console.log(JSON.parse(data))
+                //console.log(JSON.parse(data))
                 setOrders(JSON.parse(data))
             } else {
                 return undefined
@@ -154,6 +155,50 @@ const AdminPage = ({}) => {
         //update order in db
     }
 
+    const generateMenuPdf = async () => {
+        let res = await fetch(`http://localhost:8080/admins/pdf`, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(items)
+        })
+        let status = await res.json();
+        console.log(status)
+
+        switch(status) {
+            case 0:
+                setPopup({
+                    active: true, 
+                    title: "Success", 
+                    message: "PDF generated",
+                })
+                break
+            case 1:
+                setPopup({
+                    active: true, 
+                    title: "Failure", 
+                    message: "Something went wrong while generating PDF",
+                })
+                break
+            case -1:
+                setPopup({
+                    active: true, 
+                    title: "Oops", 
+                    message: "No items have been added to the menu. PDF has not been generated",
+                })
+                break
+
+            default:
+                setPopup({
+                    active: true, 
+                    title: "Failure", 
+                    message: "Something went wrong while generating PDF",
+                })
+                break
+        }
+    }
+
     return (
         <div>
             <div className='col left'>
@@ -220,21 +265,28 @@ const AdminPage = ({}) => {
                 >
                     Refresh
                 </button>
+                <br></br>
+                <button
+                    onClick={() => generateMenuPdf()}
+                >
+                    Generate Menu PDF
+                </button>
             </div>
 
             <div className='col right'>
                 <p>orders</p>
                 <ul className='items-display'>
-                { orders?.map((o) => (
-                    <li className="items">
-                        <OrderDisplay 
-                            order={o}
-                            onChangeOrderStatus={({o, newStatus}) => handleNewOrderStatus({o, newStatus})}
-                        />
-                    </li>
-                ))}
-            </ul>
+                    { orders?.map((o) => (
+                        <li className="items">
+                            <OrderDisplay 
+                                order={o}
+                                onChangeOrderStatus={({o, newStatus}) => handleNewOrderStatus({o, newStatus})}
+                            />
+                        </li>
+                    ))}
+                </ul>
             </div>
+
         
             <Popup 
                 trigger={popup.active}

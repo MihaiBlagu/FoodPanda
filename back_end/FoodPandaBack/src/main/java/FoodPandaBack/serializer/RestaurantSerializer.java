@@ -1,7 +1,6 @@
 package FoodPandaBack.serializer;
 
 import FoodPandaBack.model.DeliveryZone;
-import FoodPandaBack.model.MenuItem;
 import FoodPandaBack.model.Restaurant;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;

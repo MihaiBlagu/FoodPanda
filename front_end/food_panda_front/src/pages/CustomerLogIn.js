@@ -136,6 +136,7 @@ const CustomerLogIn = () => {
             <div className="log-container">
                 <label for="uname"><b>Username</b></label>
                 <input 
+                    className="login-form"
                     type="text" 
                     placeholder="Enter Username" 
                     value={username} 
@@ -144,6 +145,7 @@ const CustomerLogIn = () => {
 
                 <label for="psw"><b>Password</b></label>
                 <input 
+                    className="login-form"
                     type="password" 
                     placeholder="Enter Password" 
                     value={password} 

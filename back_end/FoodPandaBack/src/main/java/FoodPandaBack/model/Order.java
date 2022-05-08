@@ -1,6 +1,5 @@
 package FoodPandaBack.model;
 
-import FoodPandaBack.serializer.MenuItemSerializer;
 import FoodPandaBack.serializer.OrderSerializer;
 import FoodPandaBack.utils.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -8,8 +7,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -36,6 +33,16 @@ public class Order {
 
     @OneToMany(mappedBy = "order")
     private Set<OrderMenuItem> menuItemAssoc;
+
+    public Order() {
+    }
+
+    public Order(Long orderId, OrderStatus orderStatus, Customer customer, Restaurant restaurant) {
+        this.orderId = orderId;
+        this.orderStatus = orderStatus;
+        this.customer = customer;
+        this.restaurant = restaurant;
+    }
 
     public Restaurant getRestaurant() {
         return restaurant;

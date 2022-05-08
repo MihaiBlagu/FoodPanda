@@ -1,13 +1,11 @@
 package FoodPandaBack.model;
 
 import FoodPandaBack.serializer.OrderMenuItemSerializer;
-import FoodPandaBack.service.OrderMenuItemService;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "order_menu_item")

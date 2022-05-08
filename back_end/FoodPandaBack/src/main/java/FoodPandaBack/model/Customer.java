@@ -29,6 +29,15 @@ public class Customer extends User {
             inverseJoinColumns = @JoinColumn(name = "item_id"))
     private Set<MenuItem> itemsInCart;
 
+    public Customer() {
+    }
+
+    public Customer(Long userId, String username, String password, Set<Order> customerOrders, Set<MenuItem> itemsInCart) {
+        super(userId, username, password);
+        this.customerOrders = customerOrders;
+        this.itemsInCart = itemsInCart;
+    }
+
     private void addItemToCart(MenuItem item){
         //need to check whether they are from the same restaurant or not
     }

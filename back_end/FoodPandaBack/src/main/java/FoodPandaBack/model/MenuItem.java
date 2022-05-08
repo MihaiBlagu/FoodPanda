@@ -17,7 +17,7 @@ uniqueConstraints = @UniqueConstraint(
 ))
 //@Inheritance(strategy = InheritanceType.JOINED)
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-        property  = "itemId")
+        property  = "itemId", scope = MenuItem.class)
 @JsonSerialize(using = MenuItemSerializer.class)
 public class MenuItem  {
 

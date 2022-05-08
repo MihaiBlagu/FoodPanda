@@ -9,8 +9,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "delivery_zone")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-        property  = "zoneId", scope = DeliveryZone.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class,
+        property  = "@id", scope = DeliveryZone.class)
 @JsonSerialize(using = DeliveryZoneSerializer.class)
 public class DeliveryZone {
 

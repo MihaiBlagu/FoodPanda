@@ -1,6 +1,5 @@
 package FoodPandaBack.repository;
 
-import FoodPandaBack.model.Customer;
 import FoodPandaBack.model.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -17,5 +16,5 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     @Transactional
     @Modifying(flushAutomatically = true)
     @Query("UPDATE Restaurant r SET r.name = ?1 WHERE r.restaurantId = ?2")
-    void updateAdminRest(String name, Long restId);
+    void updateRestName(String name, Long restId);
 }

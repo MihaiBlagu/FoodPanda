@@ -1,8 +1,5 @@
 package FoodPandaBack.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import javax.persistence.*;
 
 @Entity
@@ -22,6 +19,15 @@ public class User {
 
     @Column(nullable = false)
     protected String password;
+
+    public User() {
+    }
+
+    public User(Long userId, String username, String password) {
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+    }
 
     public Long getUserId() {
         return userId;

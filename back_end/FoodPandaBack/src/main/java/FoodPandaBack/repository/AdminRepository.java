@@ -1,7 +1,6 @@
 package FoodPandaBack.repository;
 
 import FoodPandaBack.model.Admin;
-import FoodPandaBack.model.Customer;
 import FoodPandaBack.model.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

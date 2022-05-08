@@ -1,21 +1,16 @@
 package FoodPandaBack.model;
 
-import FoodPandaBack.serializer.DeliveryZoneSerializer;
 import FoodPandaBack.serializer.RestaurantSerializer;
-import FoodPandaBack.utils.Category;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 @Entity
 @Table(name = "restaurant")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-        property  = "restaurantId", scope = Restaurant.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class,
+        property  = "@id", scope = Restaurant.class)
 @JsonSerialize(using = RestaurantSerializer.class)
 public class Restaurant {
 
@@ -42,6 +37,14 @@ public class Restaurant {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurant", orphanRemoval = true)
     private Set<Order> restaurantOrders;
+
+    public Restaurant() {
+    }
+
+    public Restaurant(Long restaurantId, String name) {
+        this.restaurantId = restaurantId;
+        this.name = name;
+    }
 
     public Set<Order> getRestaurantOrders() {
         return restaurantOrders;

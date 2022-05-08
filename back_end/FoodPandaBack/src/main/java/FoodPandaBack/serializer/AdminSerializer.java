@@ -1,8 +1,6 @@
 package FoodPandaBack.serializer;
 
 import FoodPandaBack.model.Admin;
-import FoodPandaBack.model.Customer;
-import FoodPandaBack.model.MenuItem;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;

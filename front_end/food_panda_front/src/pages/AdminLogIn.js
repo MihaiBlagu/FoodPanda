@@ -94,17 +94,20 @@ const AdminLogIn = () => {
     }
 
     const fetchUserByUsername = async (username) => {
-        return await fetch(`http://localhost:8080/admins/${username}`)
-        .then(function(response) {
-            return response.text();
-        }).then(function(data) {
-            if(data) {
-                return JSON.parse(data)
-            } else {
-                
-                return undefined
-            }
-        });
+        try {
+            return await fetch(`http://localhost:8080/admins/${username}`)
+            .then(function(response) {
+                return response.text();
+            }).then(function(data) {
+                if(data) {
+                    return JSON.parse(data)
+                } else {
+                    return undefined
+                }
+            })
+        } catch (e) {
+            
+        }
     }
 
     const onRegisterClick = async (e) => {
@@ -159,7 +162,8 @@ const AdminLogIn = () => {
             <p>THIS PAGE IS FOR ADMINS ONLY</p>
             <div className="log-container">
                 <label for="uname"><b>Username</b></label>
-                <input 
+                <input
+                    className="login-form" 
                     type="text" 
                     placeholder="Enter Username" 
                     value={username} 
@@ -168,6 +172,7 @@ const AdminLogIn = () => {
 
                 <label for="psw"><b>Password</b></label>
                 <input 
+                    className="login-form"
                     type="password" 
                     placeholder="Enter Password" 
                     value={password} 
